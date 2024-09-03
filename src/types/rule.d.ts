@@ -1,0 +1,53 @@
+export type RuleListType = {
+  id: number;
+  rule_id: number;
+  status: number;
+  create_time: string;
+  update_time: string;
+  name: string;
+  desc: string;
+  frontpath: null;
+  condition: null;
+  menu: number;
+  order: number;
+  icon: string;
+  method: string;
+  child: SecondLevelMenuType;
+};
+export type SecondLevelMenuType = {
+  id: number;
+  rule_id: number;
+  status: number;
+  create_time: string;
+  update_time: string;
+  name: string;
+  desc: string;
+  frontpath: string;
+  condition: null;
+  menu: number;
+  order: number;
+  icon: string;
+  method: string;
+  child: ThreeLevel[];
+};
+export type ThreeLevel = {
+  id: number;
+  rule_id: number;
+  status: number;
+  create_time: string;
+  update_time: string;
+  name: string;
+  desc: string;
+  frontpath: string;
+  condition: string;
+  menu: number;
+  order: number;
+  icon: string;
+  method: string;
+  child: [];
+};
+export type ResRuleListType = {
+  list: RuleListType[];
+  rules: SecondLevelMenuType[];
+  totalCount: number;
+};
