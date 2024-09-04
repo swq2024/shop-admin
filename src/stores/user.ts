@@ -11,8 +11,6 @@ export const useUserStore = defineStore("Users", () => {
   const menus = ref<menuListType[]>([]); // 菜单数据
   const ruleNames = ref([]); // 权限管理
   const asideWidth = ref("240px");
-  const isLockScreen = localStorage.getItem("isLockScreen") || false;
-  const lockScreenPassword = ref(localStorage.getItem("lockScreenPassword") || "");
 
   // computed
 
@@ -76,8 +74,6 @@ export const useUserStore = defineStore("Users", () => {
     menus,
     ruleNames,
     asideWidth,
-    isLockScreen,
-    lockScreenPassword,
     SET_USERINFO,
     SET_MENUS,
     SET_RULENAMES,

@@ -5,9 +5,12 @@ import { ref } from 'vue';
 import FormDrawer from '@/components/FormDrawer.vue';
 import { useLogout, useModifiedPass } from '@/utils/useManager';
 import LockScreen from './LockScreen.vue';
+import LockDialog from './LockDialog.vue';
+import { getLockStatus } from '@/utils/access';
+import { Setting, SwitchButton } from '@element-plus/icons-vue';
 
 const { toggle, isFullscreen } = useFullscreen()
-
+const LockStatus = getLockStatus();
 const {
     passFormRef,
     passFormModel,
@@ -34,6 +37,12 @@ const handleCommand = (e: string | number | object) => {
 
 const handleRefresh = () => location.reload()
 
+const LockDialogRef = ref(null)
+const handleLockScreen = () => {
+    // @ts-ignore
+    LockDialogRef.value?.openDialog()
+}
+
 </script>
 
 <template>
@@ -59,7 +68,7 @@ const handleRefresh = () => location.reload()
 
         <div class="ml-auto flex items-center">
             <el-tooltip class="box-item" effect="dark" content="锁定" placement="bottom">
-                <el-icon class="icon-btn">
+                <el-icon class="icon-btn" @click="handleLockScreen">
                     <Lock />
                 </el-icon>
             </el-tooltip>
@@ -79,7 +88,9 @@ const handleRefresh = () => location.reload()
 
             <el-dropdown class="dropdown" @command="handleCommand">
                 <span class="flex items-center text-light-50">
+                    <!-- @vue-ignore -->
                     <el-avatar class="mr-2" :size="25" :src="userInfo.user.avatar" />
+                    <!-- @vue-ignore -->
                     {{ userInfo.user.username }}
                     <el-icon class="el-icon--right">
                         <ArrowDown />
@@ -109,7 +120,8 @@ const handleRefresh = () => location.reload()
             </el-form-item>
         </el-form>
     </FormDrawer>
-    <!-- <LockScreen/> -->
+    <LockDialog ref="LockDialogRef" />
+    <LockScreen v-if="LockStatus" />
 </template>
 
 <style lang="scss" scoped>

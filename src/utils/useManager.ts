@@ -66,7 +66,6 @@ export function useModifiedPass() {
     passFormModel,
     passFormRules,
     submitPassForm,
-
     userInfo,
     router,
   };
