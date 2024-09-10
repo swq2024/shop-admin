@@ -20,7 +20,7 @@ const props = defineProps({
         <!-- card body -->
         <el-row :gutter="20">
             <el-col :span="6" :offset="0" v-for="(item, index) in props.data" :key="index">
-                <el-card shadow="hover" class="border-0 bg-light-400">
+                <el-card shadow="hover" class="cursor-pointer">
                     <!-- card body -->
                     <div class="flex flex-col items-center justify-center">
                         <!-- @vue-skip -->

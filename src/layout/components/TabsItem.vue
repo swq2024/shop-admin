@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTabList } from '@/utils/useTabList';
-import { ArrowDown, ArrowUp } from "@element-plus/icons-vue";
+import { ArrowDown } from "@element-plus/icons-vue";
 const {
     currentTab,
     tabList,
@@ -47,7 +47,7 @@ const {
 
 <style scoped>
 .admin_tabList {
-    @apply fixed bg-gray-100 flex items-center px-2;
+    @apply fixed bg-light-50 flex items-center px-2;
     top: 64px;
     right: 0;
     height: 44px;

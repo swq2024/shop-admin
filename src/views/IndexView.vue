@@ -86,7 +86,6 @@ getStatistics2Api()
                             <span>{{ item.subValue }}</span>
                         </div>
                     </el-card>
-
                 </el-col>
             </template>
 
@@ -107,4 +106,9 @@ getStatistics2Api()
 
 
 
-<style scoped></style>
+<style scoped>
+/* .el-card__header {
+    --tw-bg-opacity: 0;
+    background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+} */
+</style>

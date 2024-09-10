@@ -20,11 +20,11 @@ const loginFormModel = ref({
 
 const loginFormRules = ref<FormRules<typeof loginFormModel>>({
   username: [
-    { type: 'string', required: true, message: '用户名不能为空', trigger: 'blur' },
+    { type: 'string', required: true, message: '请输入用户名', trigger: 'blur' },
     { min: 5, max: 12, message: '用户名长度为5-12位', trigger: 'change' }
   ],
   password: [
-    { type: 'string', required: true, message: '密码不能为空', trigger: 'blur' }
+    { type: 'string', required: true, message: '请输入密码', trigger: 'blur' }
   ]
 })
 
@@ -55,10 +55,6 @@ const submitLoginForm = (formEl: FormInstance | undefined) => {
   })
 }
 
-// const resetForm = (formEl: FormInstance | undefined) => {
-//   if (!formEl) return
-//   formEl.resetFields()
-// }
 </script>
 
 <template>
@@ -80,7 +76,7 @@ const submitLoginForm = (formEl: FormInstance | undefined) => {
       </div>
       <el-form ref="loginFormRef" :model="loginFormModel" :rules="loginFormRules" class="w-[250px]" v-on:keydown.enter="submitLoginForm(loginFormRef)">
         <el-form-item label="" prop="username">
-          <el-input v-model="loginFormModel.username" placeholder="请输入用户名" clearable>
+          <el-input v-model="loginFormModel.username" placeholder="admin" clearable>
             <template #prefix>
               <el-icon class="el-input__icon">
                 <User />
@@ -89,7 +85,7 @@ const submitLoginForm = (formEl: FormInstance | undefined) => {
           </el-input>
         </el-form-item>
         <el-form-item label="" prop="password">
-          <el-input v-model="loginFormModel.password" type="password" placeholder="请输入密码" show-password>
+          <el-input v-model="loginFormModel.password" type="password" placeholder="admin" show-password>
             <template #prefix>
               <el-icon class="el-input__icon">
                 <Lock />

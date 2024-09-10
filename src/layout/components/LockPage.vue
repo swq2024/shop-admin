@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import { updateDate } from '@/utils/clock';
 import dayjs from 'dayjs';
+import { ref } from 'vue';
 
 defineEmits(["unlock"])
 
 const { hour, minute } = updateDate()
 
+const iconChange = ref(false)
+const handleMouseenter = () => iconChange.value = true
+const handleMouseleave = () => iconChange.value = false
 </script>
 
 <template>
     <div class="w-full h-full">
-        <div class="lock_header" @click="$emit('unlock')">
+        <div class="lock_header" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave" @click="$emit('unlock')">
             <el-icon class="icon">
-                <Lock />
+                <Unlock v-if="iconChange"/>
+                <Lock v-else/>
             </el-icon>
             <p class="mt-1">点击解锁</p>
         </div>

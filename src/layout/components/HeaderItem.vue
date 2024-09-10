@@ -1,13 +1,13 @@
 <script setup lang="ts">
 // import { ArrowDown, ElemeFilled, Expand, Fold, FullScreen, Lock, Refresh, Setting, SwitchButton } from '@element-plus/icons-vue';
-import { useFullscreen } from '@vueuse/core';
+import { useDark, useFullscreen, useToggle } from '@vueuse/core';
 import { ref } from 'vue';
 import FormDrawer from '@/components/FormDrawer.vue';
 import { useLogout, useModifiedPass } from '@/utils/useManager';
 import LockScreen from './LockScreen.vue';
 import LockDialog from './LockDialog.vue';
 import { getLockStatus } from '@/utils/access';
-import { Setting, SwitchButton } from '@element-plus/icons-vue';
+import { Moon, Setting, Sunny, SwitchButton } from '@element-plus/icons-vue';
 
 const { toggle, isFullscreen } = useFullscreen()
 const LockStatus = getLockStatus();
@@ -43,6 +43,8 @@ const handleLockScreen = () => {
     LockDialogRef.value?.openDialog()
 }
 
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
@@ -51,7 +53,7 @@ const handleLockScreen = () => {
             <el-icon class="mr-2">
                 <ElemeFilled />
             </el-icon>
-            商城后台管理系统
+            商城后台中心
         </span>
         <el-tooltip class="box-item" effect="dark" content="收起" placement="bottom">
             <el-icon class="icon-btn" @click="userInfo.handleAsideWidth">
@@ -60,20 +62,20 @@ const handleLockScreen = () => {
             </el-icon>
         </el-tooltip>
 
-        <el-tooltip class="box-item" effect="dark" content="刷新" placement="bottom">
+        <el-tooltip effect="dark" content="刷新" placement="bottom">
             <el-icon class="icon-btn" @click="handleRefresh">
                 <Refresh />
             </el-icon>
         </el-tooltip>
 
         <div class="ml-auto flex items-center">
-            <el-tooltip class="box-item" effect="dark" content="锁定" placement="bottom">
+            <el-tooltip effect="dark" content="锁定" placement="bottom">
                 <el-icon class="icon-btn" @click="handleLockScreen">
                     <Lock />
                 </el-icon>
             </el-tooltip>
 
-            <el-tooltip class="box-item" effect="dark" :content="isFullscreen ? '退出全屏' : '全屏'" placement="bottom">
+            <el-tooltip effect="dark" :content="isFullscreen ? '退出全屏' : '全屏'" placement="bottom">
                 <el-icon class="icon-btn" @click="toggle">
                     <FullScreen v-if="!isFullscreen" />
                     <svg v-else t="1724202820197" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -83,8 +85,9 @@ const handleLockScreen = () => {
                             p-id="5253"></path>
                     </svg>
                 </el-icon>
-
             </el-tooltip>
+
+            <!-- <el-switch v-model="isDark" :active-icon="Moon" :inactive-icon="Sunny" inline-prompt @change="toggleDark" /> -->
 
             <el-dropdown class="dropdown" @command="handleCommand">
                 <span class="flex items-center text-light-50">
@@ -127,7 +130,7 @@ const handleLockScreen = () => {
 <style lang="scss" scoped>
 .admin_header {
     z-index: 999;
-    @apply flex items-center h-[64px] bg-indigo-500 to-light-50 fixed top-0 left-0 right-0;
+    @apply flex items-center h-[64px] bg-indigo-500 text-light-50 fixed top-0 left-0 right-0;
 
     .logo {
         @apply flex justify-center items-center w-[250px] text-xl font-thin;
